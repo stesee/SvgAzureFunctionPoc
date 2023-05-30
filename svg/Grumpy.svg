@@ -1,0 +1,22 @@
+﻿<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xml="http://www.w3.org/XML/1998/namespace" viewBox="0, 0, 240, 80">
+  <style>
+    .small {
+    font: italic 13px Liberation Serif;
+    }
+    .heavy {
+    font: bold 30px Segoe Pro Bold;
+    }
+
+    /* Note that the color of the text is set with the *
+    * fill property, the color property is for HTML only */
+    .Rrrrr {
+    font: italic 40px Segoe Pro;
+    fill: red;
+    }
+  </style>
+  <text x="20" y="35" font-size="13px" font-style="italic" class="small">My</text>
+  <text x="40" y="35" font-size="30px" font-weight="bold" class="heavy">cat</text>
+  <text x="55" y="55" font-size="13px" font-style="italic" class="small">is</text>
+  <text x="65" y="55" font-size="40px" font-style="italic" class="Rrrrr" style="fill:red;">Grumpy!</text>
+</svg>

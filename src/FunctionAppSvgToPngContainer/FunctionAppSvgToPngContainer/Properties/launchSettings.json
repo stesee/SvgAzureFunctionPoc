@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "FunctionAppSvgToPngContainer": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7271"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 33400,
+      "useSSL": false
+    }
+  }
+}
