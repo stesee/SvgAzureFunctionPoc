@@ -3,8 +3,6 @@
 FROM mcr.microsoft.com/azure-functions/dotnet:4 AS base
 RUN apt-get update && apt-get install -y libgdiplus
 RUN apt-get update; apt-get install -y fontconfig fonts-liberation
-RUN fc-cache -f -v
-COPY FunctionAppSvgToPngContainer/fonts/ /usr/shared/fonts
 COPY FunctionAppSvgToPngContainer/fonts/ /usr/share/fonts/truetype
 RUN fc-cache -f -v
 # use "fc-list" in terminal to check what fonts got installed
