@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Svg;
 using System.Drawing;
 using System.IO;
@@ -13,31 +12,37 @@ namespace FunctionAppSvgToPngContainer
 {
     public static class Function1
     {
-        // http://localhost:33400/api/Function1
-        [FunctionName("Function1")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
-        {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+        // use post man with
+        // URL http://localhost:33400/api/SvgToPng
+        // Verb: Post
+        // body
+        //        <svg version = "1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        //  xmlns:xml="http://www.w3.org/XML/1998/namespace" viewBox="0, 0, 240, 80">
+        //  <style>
+        //    .small {
+        //    font: italic 13px Liberation Serif;
+        //    }
+        //    .heavy {
+        //    font: bold 30px Segoe Pro Bold;
+        //}
 
-            string name = req.Query["name"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
-        }
+        //    /* Note that the color of the text is set with the *
+        //    * fill property, the color property is for HTML only */
+        //    .Rrrrr {
+        //    font: italic 40px Segoe Pro;
+        //fill: red;
+        //    }
+        //  </ style >
+        //  < text x = "20" y = "35" font - size = "13px" font - style = "italic" class= "small" > My </ text >
+        //  < text x = "40" y = "35" font - size = "30px" font - weight = "bold" class= "heavy" > cat </ text >
+        //  < text x = "55" y = "55" font - size = "13px" font - style = "italic" class= "small" >is </ text >
+        //  < text x = "65" y = "55" font - size = "40px" font - style = "italic" class= "Rrrrr" style = "fill:red;" > Grumpy! </ text >
+        //</ svg >
 
         [FunctionName("SvgToPng")]
-        public static async Task<IActionResult> SvgToPngAsync([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ILogger log)
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log)
         {
-            log.LogInformation("SvgToPng recieved a request.");
+            log.LogInformation("SvgToPng received a request.");
 
             using var svgMemoryStream = new MemoryStream();
             await req.Body.CopyToAsync(svgMemoryStream);
