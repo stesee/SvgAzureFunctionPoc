@@ -4,8 +4,8 @@
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.3.0" />
-    <PackageReference Include="Magick.NET.Core" Version="13.1.2" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="14.7.0" />
+    <PackageReference Include="Magick.NET.Core" Version="14.7.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
     <PackageReference Include="Svg" Version="3.4.4" />
   </ItemGroup>
